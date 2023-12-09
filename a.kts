@@ -2,6 +2,8 @@ import java.util.*
 
 fun main() {
     val list = mutableListOf<FlashCard>()
+
+    // change this to fit your study material
     list.add(FlashCard("Architecture Parlante", "architecture that gives an idea about its purpose through its form or appearance."))
     list.add(FlashCard("Panoptic plan", "plan where everything is visible from a central point"))
     list.add(FlashCard("Enlightenment Rationalism", "A movement emerged in the 18th century that argued that architecture's intellectual base is primarily in science as opposed to religious or archaic traditions."))
@@ -34,10 +36,15 @@ fun main() {
     var answer = 0
 
     print("\u001b[H\u001b[2J")
+    
     while(answer != -1){
+        println("Enter -1 to quit\n")
         val listIndices = (0..list.size-1).toList().shuffled()
+        
+        // change this from 4 to any other number if you want a different amount of options
         val index = Random().nextInt(0,4)
 
+        // update this list too if you change the upper-bound in the previous line
         println(questionMaker(listOf(
             list[listIndices[0]],
             list[listIndices[1]],
