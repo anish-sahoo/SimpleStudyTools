@@ -86,3 +86,4 @@ fun questionMaker(list: List<FlashCard>, currentItem: FlashCard): String{
 }
 
 main()
+println("Program complete")
