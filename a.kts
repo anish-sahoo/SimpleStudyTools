@@ -34,10 +34,14 @@ fun main() {
 
     val scanner = Scanner(System.`in`)
     var answer = 0
-
     print("\u001b[H\u001b[2J")
     
     while(answer != -1){
+        val questionGenerator = when(Random().nextInt(0,2)){
+            0 -> ::questionMaker
+            1 -> ::questionMakerAlt
+            else -> ::questionMaker
+        }
         println("Enter -1 to quit\n")
         val listIndices = (0..list.size-1).toList().shuffled()
         
@@ -45,7 +49,7 @@ fun main() {
         val index = Random().nextInt(0,4)
 
         // update this list too if you change the upper-bound in the previous line
-        println(questionMaker(listOf(
+        println(questionGenerator(listOf(
             list[listIndices[0]],
             list[listIndices[1]],
             list[listIndices[2]],
@@ -64,6 +68,7 @@ fun main() {
     }
     println("Question".padEnd(47) + " Attempts Correct")
     list.forEach{it -> println("${it.question.padEnd(45)}->  ${it.totalAttempts}\t ${it.totalCorrect}")}
+    println("\nTotal questions practiced: " + list.fold{acc, item -> acc + item.totalAttempts})
 }
 
 data class FlashCard(val question: String, val answer: String, var totalAttempts: Int = 0, var totalCorrect: Int = 0){
@@ -85,5 +90,11 @@ fun questionMaker(list: List<FlashCard>, currentItem: FlashCard): String{
     return "Question: ${currentItem.question}\n" + str + "\nCurrent status = ${currentItem.totalAttempts} attempts, ${currentItem.totalCorrect} correct \nEnter your answer: "
 }
 
+fun questionMakerAlt(list: List<FlashCard>, currentItem: FlashCard): String{
+    var str = ""
+    list.forEachIndexed{i, flashcard -> str += "${i+1}. ${flashcard.question}\n"}
+    return "Question: ${currentItem.answer}\n" + str + "\nCurrent status = ${currentItem.totalAttempts} attempts, ${currentItem.totalCorrect} correct \nEnter your answer: "
+}
+
 main()
-println("Program complete")
+println("...Program complete")
