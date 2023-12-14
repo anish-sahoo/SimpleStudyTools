@@ -68,7 +68,7 @@ fun main() {
     }
     println("Question".padEnd(47) + " Attempts Correct")
     list.forEach{it -> println("${it.question.padEnd(45)}->  ${it.totalAttempts}\t ${it.totalCorrect}")}
-    println("\nTotal questions practiced: " + list.fold{acc, item -> acc + item.totalAttempts})
+    println("\nTotal questions practiced: " + list.fold(0){acc:Int, item:FlashCard -> acc + item.totalAttempts})
 }
 
 data class FlashCard(val question: String, val answer: String, var totalAttempts: Int = 0, var totalCorrect: Int = 0){
