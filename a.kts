@@ -32,6 +32,7 @@ fun main() {
     list.add(FlashCard("Modern-ish", "suggestive of modern style"))
     list.add(FlashCard("Less is a Bore", "Robert Venturi's idea about architecture, which says minimalism isn't the way to go"))
 
+
     val scanner = Scanner(System.`in`)
     var answer = 0
     print("\u001b[H\u001b[2J")
